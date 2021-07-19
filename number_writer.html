@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Number Writer</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <h1 class="text-center text-success shadow py-3">Number Writer</h1>
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="start">Start:</label>
+                <input id="start" type="number" placeholder="Start" title="Enter start of number" class="form-control text-center">
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="sp">Separator:</label>
+                <input type="text" id="sp" placeholder="" value=" , " title="Enter Separator" class="form-control text-center">
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="end">End:</label>
+                <input id="end" type="number" placeholder="End" title="Enter end of number" class="form-control text-center">
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="form-group">
+                <input type="button" onclick="go()" title="click to continue" id="go" class="btn btn-success btn-block" value="Go">
+            </div>
+        </div>
+        <div class="col-md-6 mx-auto">
+            <div class="form-group">
+                <label for="end">Output:</label>
+                <textarea onclick="copy()" name="output" id="output" title="Click to copy" cols="30" rows="10" placeholder="Output" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <script>
+        let go = ()=>{
+            let output="";
+            let start = document.getElementById("start").value;
+            let end = document.getElementById("end").value;
+            let sp = document.getElementById("sp").value;
+            if (start == "" || start == null || end =="" || end == null || sp == null){
+                alert("Something went wrong. \n please check the input fields!");
+                return false;
+            }
+            if (start > end){
+                for (let x = start;x>=end;x--){
+                    output += x + sp;
+                }
+            }else{
+                    for (let x =start ; x <=end;x++){
+                        output += x + sp;
+                    }
+            }
+            document.getElementById('output').innerText = output;
+        }
+        let copy = () =>{
+            document.getElementById('output').select();
+            document.execCommand('copy');
+            alert("copied !");
+}
+    </script>
+</body>
+</html>
